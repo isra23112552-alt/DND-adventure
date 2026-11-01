@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ตำนานดันเจี้ยนแห่งเถ้าถ่าน</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#14100d;--panel:#211a14;--panel2:#2b2219;--leather:#3a2c1f;--gold:#d4a84b;--gold2:#f0d38a;--blood:#9b2226;--blood2:#c4393d;--ink:#eadfc8;--mute:#a8987c;--ok:#7fae6a;
+--head:'Pirata One','Sarabun',serif;--body:'Sarabun','Noto Serif Thai',Georgia,serif;color-scheme:dark;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:radial-gradient(ellipse at top,#2a1d14 0,var(--bg) 60%) fixed;color:var(--ink);font:17px/1.65 var(--body);min-height:100vh}
+h1,h2,h3{font-family:var(--head);font-weight:400;color:var(--gold);margin:0;letter-spacing:.5px}
+h1{font-size:clamp(2.2rem,6vw,3.4rem);text-align:center;text-shadow:0 2px 0 #000}
+h2{font-size:1.7rem}h3{font-size:1.3rem}
+.wrap{max-width:1180px;margin:0 auto;padding:18px 14px 40px}
+.sub{text-align:center;color:var(--mute);margin:4px 0 22px}
+.panel{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--leather);border-radius:6px;padding:16px;box-shadow:inset 0 0 0 1px #00000066,0 6px 18px #0008;position:relative}
+.panel::before{content:"";position:absolute;inset:4px;border:1px solid #d4a84b33;border-radius:3px;pointer-events:none}
+label{display:block;font-weight:600;margin:12px 0 4px;color:var(--gold2)}
+input[type=text],input[type=url],select{width:100%;background:#120e0a;color:var(--ink);border:1px solid var(--leather);border-radius:4px;padding:10px 12px;font:inherit}
+input:focus,select:focus,button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.create{display:grid;grid-template-columns:1.2fr 1fr;gap:18px}
+.classes{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}
+.cls{background:#120e0a;border:1px solid var(--leather);color:var(--ink);padding:10px 6px;border-radius:4px;cursor:pointer;font:inherit;text-align:center}
+.cls b{display:block;font-family:var(--head);font-weight:400;font-size:1.2rem;color:var(--gold)}
+.cls small{color:var(--mute)}
+.cls[aria-pressed=true]{border-color:var(--gold);background:#2a1f12;box-shadow:0 0 0 1px var(--gold)}
+.btn{background:linear-gradient(180deg,#b3292e,var(--blood));color:#fff;border:1px solid #e0b25a;border-radius:4px;padding:12px 18px;font:600 1rem var(--body);cursor:pointer;width:100%}
+.btn:hover:not(:disabled){background:linear-gradient(180deg,#c4393d,#a82a2f)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.ghost{background:transparent;border:1px solid var(--gold);color:var(--gold)}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;text-align:center;margin-top:10px}
+.stat{background:#120e0a;border:1px solid var(--leather);border-radius:4px;padding:6px 2px}
+.stat b{display:block;font-size:1.3rem;color:var(--gold2)}.stat small{color:var(--mute);font-size:.78rem}
+.avatar{width:120px;height:120px;border-radius:50%;border:3px solid var(--gold);background:#120e0a center/cover no-repeat;display:flex;align-items:center;justify-content:center;font-size:3rem;margin:0 auto;box-shadow:0 0 0 4px #000,0 0 24px #d4a84b44}
+.hint{color:var(--mute);font-size:.9rem}
+.pts{color:var(--gold2);font-weight:700}
+.alloc{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:6px}
+.alloc div{text-align:center;background:#120e0a;border:1px solid var(--leather);border-radius:4px;padding:4px 0}
+.alloc button{background:var(--leather);color:var(--ink);border:0;width:30px;height:30px;border-radius:4px;font-size:1.1rem;cursor:pointer}
+.hide{display:none!important}
+.game{display:grid;grid-template-columns:270px 1fr 300px;gap:16px;align-items:start}
+.bar{height:16px;background:#120e0a;border:1px solid var(--leather);border-radius:8px;overflow:hidden;margin:3px 0 10px}
+.bar i{display:block;height:100%;transition:width .5s}
+.hp i{background:linear-gradient(90deg,var(--blood),var(--blood2))}.mp i{background:linear-gradient(90deg,#27508a,#4a86d6)}
+.row{display:flex;justify-content:space-between;font-size:.95rem}
+.scene p{white-space:pre-line}
+.choices{display:grid;gap:10px;margin-top:14px}
+.choice{text-align:left;background:#120e0a;border:1px solid var(--leather);color:var(--ink);padding:12px 14px;border-radius:4px;font:inherit;cursor:pointer}
+.choice:hover:not(:disabled){border-color:var(--gold);background:#1c150e}
+.choice:disabled{opacity:.4;cursor:not-allowed}
+.choice em{display:block;color:var(--mute);font-style:normal;font-size:.86rem}
+.dicebox{display:flex;align-items:center;gap:16px;margin-top:16px;min-height:96px}
+.d20{width:88px;height:96px;flex:none;background:linear-gradient(145deg,var(--gold2),#8a6a22);clip-path:polygon(50% 0,95% 25%,95% 75%,50% 100%,5% 75%,5% 25%);display:flex;align-items:center;justify-content:center;color:#1a1208;font:400 2.1rem var(--head)}
+.d20.spin{animation:spin .5s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.d20.crit{background:linear-gradient(145deg,#fff2b0,#e0a800)}.d20.fumble{background:linear-gradient(145deg,#e07070,#6a1014)}
+.result{line-height:1.4}
+.log{max-height:520px;overflow:auto;font-size:.93rem;display:flex;flex-direction:column;gap:6px}
+.log div{padding:6px 8px;border-left:3px solid var(--leather);background:#120e0a}
+.log .win{border-color:var(--ok)}.log .lose{border-color:var(--blood2)}.log .sys{border-color:var(--gold)}
+.end{text-align:center}.end h2{font-size:2.2rem;margin-bottom:8px}
+@media(max-width:900px){.create,.game{grid-template-columns:1fr}.log{max-height:260px}}
+@media(prefers-reduced-motion:reduce){.d20.spin{animation:none}.bar i{transition:none}}
+.bar2{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;margin:0 0 16px}
+.sm{background:var(--leather);color:var(--ink);border:1px solid var(--gold);border-radius:4px;padding:6px 12px;font:inherit;cursor:pointer}
+.sm:disabled{opacity:.4;cursor:not-allowed}
+.ov{position:fixed;inset:0;background:#000c;z-index:50;display:flex;align-items:flex-start;justify-content:center;padding:calc(14px + env(safe-area-inset-top,0px)) 14px 14px;overflow:auto}
+.ov .panel{width:100%;max-width:520px;margin-top:4vh}
+.mem{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--leather)}
+.chat{height:170px;overflow:auto;background:#120e0a;border:1px solid var(--leather);padding:8px;margin:8px 0;font-size:.93rem}
+.err{color:var(--blood2);min-height:1.4em}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>ตำนานดันเจี้ยนแห่งเถ้าถ่าน</h1>
+<p class="sub">สร้างวีรบุรุษ ทอยลูกเต๋า แล้วลงไปสู่ห้องใต้ดินที่ไม่มีใครกลับขึ้นมา</p>
+<div class="bar2"><span id="who" class="hint"></span>
+<button class="sm" id="bLogin">ล็อกอิน / สมัคร</button><button class="sm hide" id="bSave">บันทึกตัวละคร</button><button class="sm hide" id="bLoad">โหลดตัวละคร</button><button class="sm hide" id="bGuild">กิลด์</button><button class="sm hide" id="bOut">ออกจากระบบ</button><span id="msg" class="pts"></span></div>
+<div id="authOv" class="ov hide"><div class="panel"><h2>เข้าสู่ระบบ</h2>
+<label for="aU">ชื่อผู้ใช้</label><input type="text" id="aU" maxlength="16" autocomplete="username">
+<label for="aP">รหัสผ่าน (6 ตัวขึ้นไป)</label><input type="password" id="aP" autocomplete="current-password" style="width:100%;background:#120e0a;color:var(--ink);border:1px solid var(--leather);border-radius:4px;padding:10px 12px;font:inherit">
+<p class="err" id="aErr"></p>
+<div class="grid2"><button class="btn" id="aIn">ล็อกอิน</button><button class="btn ghost" id="aReg">สมัครสมาชิก</button></div>
+<button class="sm" id="aX" style="margin-top:12px">เล่นแบบไม่ล็อกอิน</button></div></div>
+<div id="guildOv" class="ov hide"><div class="panel" id="guildBox"></div></div>
+
+
+<!-- CREATOR -->
+<section id="creator" class="create">
+ <div class="panel">
+  <h2>สร้างตัวละคร</h2>
+  <label for="name">ชื่อตัวละคร</label>
+  <input type="text" id="name" maxlength="24" placeholder="เช่น อาเธอร์ ผู้เดินทาง">
+  <div class="grid2">
+   <div><label for="race">เผ่าพันธุ์</label><select id="race"></select></div>
+   <div><label for="bg">ภูมิหลัง</label><select id="bg"></select></div>
+  </div>
+  <label>อาชีพ (Class)</label>
+  <div class="classes" id="classes"></div>
+  <div id="customBox" class="hide" style="margin-top:12px">
+   <label for="cname">ชื่ออาชีพของคุณ</label>
+   <input type="text" id="cname" maxlength="20" placeholder="เช่น นักล่าเงา">
+   <label for="ctype">ประเภทพลัง</label>
+   <select id="ctype"><option value="phys">Physical (พลังกาย: HP สูง, มานาน้อย)</option><option value="magic">Magical (พลังเวท: มานาสูง, HP ต่ำ)</option></select>
+   <label>กระจายแต้มโบนัส <span class="pts" id="pts"></span></label>
+   <div class="alloc" id="alloc"></div>
+  </div>
+  <label for="avUrl">รูป Avatar</label>
+  <input type="file" id="avFile" accept="image/*" style="width:100%;color:var(--mute)">
+  <input type="url" id="avUrl" placeholder="หรือวางลิงก์รูปภาพ (https://...)" style="margin-top:8px">
+  <p class="hint" id="avErr"></p>
+ </div>
+ <div class="panel">
+  <h3 style="text-align:center">ตัวอย่างตัวละคร</h3>
+  <div class="avatar" id="pvAv" style="margin-top:12px"></div>
+  <h2 id="pvName" style="text-align:center;margin-top:10px"></h2>
+  <p id="pvInfo" class="hint" style="text-align:center;margin:0"></p>
+  <div id="pvBars" style="margin-top:12px"></div>
+  <div class="stats" id="pvStats"></div>
+  <p class="hint" id="pvBg" style="margin-top:12px"></p>
+  <button class="btn" id="startBtn" style="margin-top:12px">ลงสู่ดันเจี้ยน</button>
+ </div>
+</section>
+
+<!-- GAME -->
+<section id="game" class="game hide">
+ <aside class="panel" id="side"></aside>
+ <main class="panel scene" id="scene"></main>
+ <aside class="panel"><h3>บันทึกการผจญภัย</h3><div class="log" id="log" style="margin-top:10px"></div></aside>
+</section>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const ST=['STR','DEX','INT','WIS','CON'];
+const STN={STR:'พละกำลัง',DEX:'ความคล่องแคล่ว',INT:'สติปัญญา',WIS:'ญาณหยั่งรู้',CON:'ความทนทาน'};
+const RACES={Human:{n:'มนุษย์',m:{STR:1,DEX:1,INT:1}},Elf:{n:'เอลฟ์',m:{DEX:2,INT:1}},Dwarf:{n:'คนแคระ',m:{CON:2,STR:1}},Orc:{n:'ออร์ค',m:{STR:2,CON:1}}};
+const BGS={Soldier:{n:'ทหารผ่านศึก',m:{STR:1},d:'ผ่านสงครามมามาก (+1 STR)'},Scholar:{n:'นักวิชาการ',m:{INT:1},d:'ใช้ชีวิตกับหนังสือโบราณ (+1 INT)'},Outlaw:{n:'ผู้ร้ายหนีคดี',m:{DEX:1},d:'เคยหลบหนีเจ้าหน้าที่ (+1 DEX)'},Acolyte:{n:'ผู้รับใช้เทพ',m:{WIS:1},d:'เติบโตในวัดศักดิ์สิทธิ์ (+1 WIS)'}};
+const CLS={
+Fighter:{n:'นักรบ',e:'⚔️',hp:30,mp:4,s:{STR:14,DEX:11,INT:8,WIS:10,CON:14}},
+Wizard:{n:'จอมเวท',e:'🔮',hp:18,mp:20,s:{STR:8,DEX:11,INT:15,WIS:12,CON:9}},
+Rogue:{n:'จอมโจร',e:'🗡️',hp:22,mp:8,s:{STR:10,DEX:15,INT:12,WIS:9,CON:10}},
+Cleric:{n:'นักบวช',e:'✨',hp:26,mp:14,s:{STR:11,DEX:9,INT:10,WIS:15,CON:12}},
+Custom:{n:'สร้างเอง',e:'🛡️',hp:0,mp:0,s:{STR:10,DEX:10,INT:10,WIS:10,CON:10}}};
+let sel={cls:'Fighter',alloc:{STR:0,DEX:0,INT:0,WIS:0,CON:0},avatar:''};
+const POINTS=10,MAXA=6;
+const left=()=>POINTS-ST.reduce((a,k)=>a+sel.alloc[k],0);
+const mod=v=>Math.floor((v-10)/2);
+
+function fill(id,o){$(id).innerHTML=Object.keys(o).map(k=>`<option value="${k}">${o[k].n} (${k})</option>`).join('')}
+fill('race',RACES);fill('bg',BGS);
+$('classes').innerHTML=Object.keys(CLS).map(k=>`<button type="button" class="cls" data-k="${k}"><b>${CLS[k].e} ${k==='Custom'?'Custom':k}</b><small>${CLS[k].n}</small></button>`).join('');
+$('alloc').innerHTML=ST.map(k=>`<div><small>${k}</small><br><button type="button" data-a="${k}" data-d="-1" aria-label="ลด ${k}">−</button> <b id="al${k}">0</b> <button type="button" data-a="${k}" data-d="1" aria-label="เพิ่ม ${k}">+</button></div>`).join('');
+
+function build(){
+ const c=CLS[sel.cls],r=RACES[$('race').value].m,b=BGS[$('bg').value].m,custom=sel.cls==='Custom';
+ const s={};ST.forEach(k=>s[k]=c.s[k]+(r[k]||0)+(b[k]||0)+(custom?sel.alloc[k]:0));
+ let hp,mp;
+ if(custom){const phys=$('ctype').value==='phys';hp=(phys?24:16)+(s.CON-10)*2;mp=(phys?4:18)+(s.INT-10)}
+ else{hp=c.hp+(s.CON-c.s.CON)*2;mp=c.mp+(s.INT-c.s.INT)}
+ const cn=custom?($('cname').value.trim()||'อาชีพไร้นาม'):c.n;
+ return{name:$('name').value.trim()||'ผู้กล้านิรนาม',race:RACES[$('race').value].n,cls:cn,type:custom?($('ctype').value==='phys'?'Physical':'Magical'):null,s,hp:Math.max(6,hp),mp:Math.max(0,mp),emoji:c.e,bg:BGS[$('bg').value]}
+}
+function bars(c,hp,mp,mhp,mmp){return `<div class="row"><span>❤️ HP</span><span>${hp}/${mhp}</span></div><div class="bar hp"><i style="width:${hp/mhp*100}%"></i></div><div class="row"><span>🔷 มานา</span><span>${mp}/${mmp}</span></div><div class="bar mp"><i style="width:${mmp?mp/mmp*100:0}%"></i></div>`}
+function statsHtml(s){return ST.map(k=>`<div class="stat" title="${STN[k]}"><b>${s[k]}</b><small>${k}</small></div>`).join('')}
+function setAv(el,c){el.style.backgroundImage=sel.avatar?`url("${sel.avatar.replace(/"/g,'%22')}")`:'';el.textContent=sel.avatar?'':c.emoji}
+function preview(){
+ const c=build();
+ document.querySelectorAll('.cls').forEach(b=>b.setAttribute('aria-pressed',b.dataset.k===sel.cls));
+ $('customBox').classList.toggle('hide',sel.cls!=='Custom');
+ ST.forEach(k=>$('al'+k).textContent=sel.alloc[k]);$('pts').textContent='(เหลือ '+left()+' แต้ม)';
+ $('pvName').textContent=c.name;$('pvInfo').textContent=`${c.race} · ${c.cls}${c.type?' · '+c.type:''}`;
+ $('pvBars').innerHTML=bars(c,c.hp,c.mp,c.hp,c.mp);$('pvStats').innerHTML=statsHtml(c.s);
+ $('pvBg').textContent=`ภูมิหลัง: ${c.bg.n} — ${c.bg.d}`;setAv($('pvAv'),c);
+}
+document.addEventListener('input',e=>{if(e.target.closest('#creator'))preview()});
+$('classes').onclick=e=>{const b=e.target.closest('.cls');if(b){sel.cls=b.dataset.k;preview()}};
+$('alloc').onclick=e=>{const b=e.target.closest('button');if(!b)return;const k=b.dataset.a,d=+b.dataset.d,v=sel.alloc[k]+d;
+ if(v<0||v>MAXA||(d>0&&left()<=0))return;sel.alloc[k]=v;preview()};
+$('avFile').onchange=e=>{const f=e.target.files[0];$('avErr').textContent='';if(!f)return;
+ if(f.size>3e6){$('avErr').textContent='ไฟล์ใหญ่เกิน 3MB';return}
+ const r=new FileReader();r.onload=()=>{sel.avatar=r.result;$('avUrl').value='';preview()};r.readAsDataURL(f)};
+$('avUrl').oninput=e=>{sel.avatar=e.target.value.trim();$('avErr').textContent=sel.avatar?'ถ้ารูปไม่ขึ้น เว็บต้นทางอาจบล็อกการใช้ลิงก์ ลองอัปโหลดไฟล์แทน':'';preview()};
+
+/* ---------- ADVENTURE DATA ---------- */
+const EVENTS=[
+{t:'ห้องโถงกระดูก',x:'พื้นห้องเกลื่อนด้วยกระดูก โครงกระดูกสามตัวลุกขึ้นช้า ๆ พร้อมดาบสนิมเขรอะ',c:[
+ {l:'ชาร์จเข้าฟันให้แหลก',s:'STR',dc:12,ok:'ดาบของคุณทุบโครงกระดูกแตกกระจาย พบเหรียญในซี่โครง',bad:'ถูกฟันเข้าที่ไหล่ก่อนจะล้มพวกมันได้',d:[3,6],g:[8,15]},
+ {l:'ร่ายเวทพลังงานทำลายล้าง',s:'INT',dc:11,mp:3,ok:'ลำแสงเวทกวาดพวกมันเป็นผุยผง',bad:'เวทพลาดเป้า เศษกระดูกบาดคุณ',d:[2,5],g:[10,16]},
+ {l:'หลบเข้าเงามืดแล้วเลี่ยงผ่าน',s:'DEX',dc:13,ok:'คุณลอดผ่านไปเงียบ ๆ และเก็บของตกหล่นได้',bad:'เสียงฝีเท้าดังก้อง พวกมันไล่ตามมาฟันคุณ',d:[2,5],g:[4,8]}]},
+{t:'สะพานเชือกเหนือเหวลึก',x:'สะพานเชือกเก่าแกว่งไกวเหนือหุบเหวที่ไม่เห็นก้น ลมเย็นพัดหวีดหวิว',c:[
+ {l:'ก้าวข้ามอย่างระมัดระวัง',s:'DEX',dc:12,ok:'คุณข้ามไปถึงฝั่งตรงข้ามอย่างปลอดภัย',bad:'ไม้กระดานหัก คุณเกือบตกและบาดเจ็บ',d:[3,7],g:[0,6]},
+ {l:'ใช้กำลังดึงสะพานให้มั่นคงก่อน',s:'STR',dc:11,ok:'คุณขึงเชือกใหม่ ข้ามไปได้สบาย',bad:'เชือกขาดใส่มือ แผลฉกรรจ์',d:[2,5],g:[4,9]},
+ {l:'อ่านสัญลักษณ์บนเสาสะพาน',s:'WIS',dc:12,ok:'คุณพบกลไกซ่อนที่ลดสะพานหินลงมา',bad:'สัญลักษณ์เป็นกับดัก ลูกศรพุ่งออกมา',d:[2,6],g:[6,12]}]},
+{t:'หีบสมบัติที่หายใจได้',x:'หีบไม้ผูกโซ่ทองตั้งกลางห้อง มันดูเหมือนขยับขึ้นลงตามจังหวะหายใจ',c:[
+ {l:'งัดล็อกด้วยความชำนาญ',s:'DEX',dc:13,ok:'คลิก! ภายในมีเหรียญทองและยาฟื้นพลัง',bad:'หีบกัดนิ้วคุณ มันคือมิมิก!',d:[3,6],g:[10,20],h:3},
+ {l:'ตรวจสอบด้วยเวทตรวจจับ',s:'INT',dc:12,mp:2,ok:'คุณเห็นออร่ามีชีวิต ปลดผนึกอย่างปลอดภัย',bad:'เวทรบกวนมัน มันตื่นและกระโจนใส่',d:[2,6],g:[8,16],h:2},
+ {l:'ทุบเปิดด้วยกำลัง',s:'STR',dc:12,ok:'ฝาหีบกระเด็น สมบัติไหลออกมา',bad:'มิมิกตอบโต้ด้วยฟันแหลมคม',d:[3,7],g:[6,12]}]},
+{t:'เจ้าผีกระซิบ',x:'วิญญาณหญิงสาวสวมชุดขาดวิ่นปรากฏขึ้น กระซิบว่าเธอหลงทางมาร้อยปี และขอให้คุณนำทางเธอออกไป',c:[
+ {l:'ปลอบโยนและทำพิธีส่งวิญญาณ',s:'WIS',dc:12,ok:'เธอยิ้มอย่างสงบก่อนจางหาย ทิ้งอัญมณีไว้ให้',bad:'เธอกรีดร้อง พลังเย็นยะเยือกกัดกินกายคุณ',d:[3,6],g:[8,14],h:2},
+ {l:'ข่มขู่ให้ถอยไป',s:'STR',dc:14,ok:'วิญญาณหวาดกลัวและหนีไป',bad:'เธอโกรธจัด พุ่งทะลุร่างคุณ',d:[3,7],g:[2,5]},
+ {l:'เกลี้ยกล่อมด้วยคำพูดหว่านล้อม',s:'INT',dc:12,ok:'คุณหลอกล่อให้เธอบอกทางลับ',bad:'เธอจับโกหกได้และโจมตี',d:[2,5],g:[6,10]}]},
+{t:'เห็ดเรืองแสงและอสูรโคลน',x:'ถ้ำชื้นเต็มไปด้วยเห็ดเรืองแสงสีเขียว กองโคลนก้อนใหญ่ขยับตัวเข้าหาคุณ',c:[
+ {l:'ฟันมันให้แยกเป็นชิ้น',s:'STR',dc:11,ok:'โคลนแตกกระจาย พบแร่เงินข้างใน',bad:'มันเกาะติดแขนและกัดกร่อนเกราะ',d:[2,5],g:[6,12]},
+ {l:'จุดไฟเผา',s:'INT',dc:12,mp:3,ok:'ไฟลุกท่วมจนมันเหือดแห้ง',bad:'ควันพิษลอยกลับมาใส่หน้าคุณ',d:[3,6],g:[5,10]},
+ {l:'เก็บเห็ดกินเป็นยา',s:'WIS',dc:13,ok:'เห็ดชนิดนี้รักษาแผลได้พอดี',bad:'เห็ดมีพิษ คุณปวดท้องรุนแรง',d:[3,6],g:[0,4],h:4}]},
+{t:'นักผจญภัยผู้บาดเจ็บ',x:'ชายคนหนึ่งนอนพิงผนัง เลือดไหลที่ขา เขาอ้อนวอนขอความช่วยเหลือ ท่าทางน่าสงสัยเล็กน้อย',c:[
+ {l:'ช่วยพันแผลให้',s:'WIS',dc:11,ok:'เขาขอบคุณและมอบแผนที่ลับให้',bad:'เขาเป็นโจร! แทงคุณแล้วหนีไป',d:[3,6],g:[6,12]},
+ {l:'จับตาดูก่อนแล้วตรวจกระเป๋า',s:'DEX',dc:13,ok:'คุณพบเหรียญและยาในกระเป๋าเขา',bad:'เขาจับข้อมือได้ แล้วต่อสู้กันวุ่นวาย',d:[2,5],g:[8,14]},
+ {l:'ถามคำถามเพื่อทดสอบ',s:'INT',dc:12,ok:'คำตอบเขาผิดพลาด คุณเปิดโปงเขา ได้ของที่ซ่อนไว้',bad:'คุณถูกหลอกให้เสียเวลาจนโดนซุ่มโจมตี',d:[2,5],g:[6,10]}]}
+];
+const BOSS={t:'ห้องบัลลังก์: มังกรเถ้าถ่าน',x:'ปีกมหึมาสยายออกกลางความมืด ดวงตาสีเพลิงจ้องคุณเขม็ง "ผู้ที่ลงมาแล้วต้องไม่ได้กลับ" มังกรคำราม เปลวไฟฟุ้งทั่วห้อง',c:[
+ {l:'พุ่งเข้าฟันที่จุดอ่อนใต้คอ',s:'STR',dc:15,ok:'ดาบคุณทะลุเกล็ด มังกรล้มลงสะเทือนพื้น!',bad:'หางมังกรฟาดคุณกระเด็นไปชนผนัง',d:[5,9]},
+ {l:'รวบรวมพลังเวทสุดท้าย',s:'INT',dc:15,mp:5,ok:'ลำแสงเวทเจาะดวงตามังกร มันทรุดลง!',bad:'เปลวไฟสะท้อนกลับมาเผาคุณ',d:[5,9]},
+ {l:'หลบเกลื้อกแล้วแทงจากด้านหลัง',s:'DEX',dc:15,ok:'คุณลอดใต้ปีกและแทงหัวใจมัน!',bad:'ไฟแผดเผาเส้นทางหนีของคุณ',d:[5,9]}]};
+const TOTAL=6;
+
+/* ---------- GAME ---------- */
+let G=null;
+const rnd=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+const esc=s=>s.replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
+function log(t,k=''){const d=document.createElement('div');d.className=k;d.textContent=t;$('log').appendChild(d);$('log').scrollTop=1e9}
+$('startBtn').onclick=()=>{const c=build();
+ G={c,hp:c.hp,mp:c.mp,gold:0,room:0,busy:false,over:false,pool:[...EVENTS].sort(()=>Math.random()-.5),ev:null};
+ $('creator').classList.add('hide');$('game').classList.remove('hide');$('log').innerHTML='';
+ log(`${c.name} (${c.race} ${c.cls}) ก้าวลงสู่ดันเจี้ยน`,'sys');window.scrollTo(0,0);nextRoom()};
+function side(){const c=G.c;
+ $('side').innerHTML=`<div class="avatar" id="gAv"></div><h2 style="text-align:center;margin-top:10px">${esc(c.name)}</h2><p class="hint" style="text-align:center;margin:0 0 10px">${esc(c.race)} · ${esc(c.cls)}${c.type?' · '+c.type:''}</p>${bars(c,G.hp,G.mp,c.hp,c.mp)}<div class="stats" style="grid-template-columns:repeat(5,1fr)">${statsHtml(c.s)}</div><p style="margin:12px 0 0">💰 ทอง: <b class="pts">${G.gold}</b></p><p class="hint" style="margin:0">ห้องที่ ${Math.min(G.room,TOTAL+1)}/${TOTAL+1}</p>`;
+ setAv($('gAv'),c)}
+function nextRoom(){G.room++;G.ev=G.room>TOTAL?BOSS:G.pool[(G.room-1)%G.pool.length];renderScene();log(`— ห้องที่ ${G.room}: ${G.ev.t} —`,'sys')}
+function renderScene(msg){side();const e=G.ev;
+ $('scene').innerHTML=`<h2>${e.t}</h2><p>${e.x}</p><div class="choices" id="ch">${e.c.map((c,i)=>{const m=mod(G.c.s[c.s]),poor=c.mp&&G.mp<c.mp;
+  return `<button class="choice" data-i="${i}" ${poor?'disabled':''}>${c.l}<em>ทอย D20 ${m>=0?'+':''}${m} (${c.s}) · ต้อง ${c.dc}+${c.mp?' · ใช้มานา '+c.mp+(poor?' (มานาไม่พอ)':''):''}</em></button>`}).join('')}</div>
+ <div class="dicebox"><div class="d20" id="die">20</div><div class="result" id="res">${msg||'เลือกวิธีรับมือเพื่อทอยลูกเต๋า'}</div></div>`;
+ $('ch').onclick=ev=>{const b=ev.target.closest('.choice');if(b&&!G.busy&&!G.over)choose(+b.dataset.i)}}
+function choose(i){const c=G.ev.c[i];G.busy=true;document.querySelectorAll('.choice').forEach(b=>b.disabled=true);
+ if(c.mp){G.mp-=c.mp;side();}
+ const die=$('die'),res=$('res');die.className='d20 spin';res.textContent='ลูกเต๋ากำลังกลิ้ง…';
+ const fin=Math.random()*20+1|0;let n=0;
+ const t=setInterval(()=>{die.textContent=rnd(1,20);if(++n>12){clearInterval(t);resolve(c,fin)}},70)}
+function resolve(c,r){const die=$('die'),m=mod(G.c.s[c.s]),tot=r+m;
+ const win=r===20||(r!==1&&tot>=c.dc);
+ die.className='d20'+(r===20?' crit':r===1?' fumble':'');die.textContent=r;
+ let out=`ทอยได้ ${r} ${m>=0?'+':'−'} ${Math.abs(m)} = ${tot} (ต้อง ${c.dc}) → `;
+ if(r===20)out+='คริติคอล! ';if(r===1)out+='พลาดอย่างหนัก! ';
+ if(win){const g=c.g?rnd(c.g[0],c.g[1])+(r===20?5:0):0;G.gold+=g;let h=c.h||0;if(h){G.hp=Math.min(G.c.hp,G.hp+h)}
+  out+='สำเร็จ! '+c.ok+(g?` (+${g} ทอง)`:'')+(h?` (ฟื้น ${h} HP)`:'');log(`${c.l}: ${out}`,'win')}
+ else{const d=rnd(c.d[0],c.d[1])+(r===1?2:0);G.hp=Math.max(0,G.hp-d);out+='ล้มเหลว! '+c.bad+` (−${d} HP)`;log(`${c.l}: ${out}`,'lose')}
+ side();
+ setTimeout(()=>{
+  if(G.hp<=0)return end(false,out);
+  if(win){if(G.ev===BOSS)return end(true,out);
+   $('res').textContent=out;$('ch').innerHTML='<button class="btn" id="go">ไปยังห้องถัดไป</button>';
+   $('go').onclick=()=>{G.busy=false;nextRoom()};}
+  else{G.busy=false;$('res').textContent=out;
+   if(G.ev===BOSS){renderScene(out);}
+   else{$('ch').innerHTML='<button class="btn" id="go">เดินหน้าต่อด้วยบาดแผล</button>';$('go').onclick=()=>{G.busy=false;nextRoom()}}}
+ },700);$('res').textContent=out}
+function end(w,out){G.over=true;
+ log(w?`ชัยชนะ! ${G.c.name} สังหารมังกรเถ้าถ่านและได้ทอง ${G.gold}`:`${G.c.name} ล้มลงในความมืด… ได้ทอง ${G.gold}`,w?'win':'lose');
+ $('scene').innerHTML=`<div class="end"><h2>${w?'ตำนานบทใหม่ถูกจารึก':'การผจญภัยจบลง'}</h2><p>${esc(out)}</p><p>${w?'มังกรสิ้นลม ห้องสมบัติเปิดออกให้คุณ':'ดันเจี้ยนกลืนกินอีกหนึ่งวิญญาณ'}<br>ทองที่สะสมได้: <b class="pts">${G.gold}</b></p><button class="btn" id="again">สร้างตัวละครใหม่</button> <br><br><button class="btn ghost" id="retry">ลงดันเจี้ยนอีกครั้งด้วยตัวละครเดิม</button></div>`;
+ $('again').onclick=()=>{$('game').classList.add('hide');$('creator').classList.remove('hide')};
+ $('retry').onclick=()=>$('startBtn').click();}
+preview();
+</script>
+<script>
+/* ===== ระบบบัญชี / บันทึก / แมพ / กิลด์ ===== */
+let TOKEN='',ME=null,MAP=null,gTimer=null;const N=15;
+try{TOKEN=localStorage.getItem('tk')||''}catch(e){}
+async function api(p,b){
+ const r=await fetch(p,{method:b?'POST':'GET',headers:{'Content-Type':'application/json',Authorization:'Bearer '+TOKEN},body:b?JSON.stringify(b):undefined});
+ const j=await r.json().catch(()=>({err:'ระบบนี้ต้องเปิดผ่านเซิร์ฟเวอร์ (server.js)'}));
+ if(!r.ok)throw new Error(j.err||'ผิดพลาด');return j}
+function flash(m){$('msg').textContent=m;setTimeout(()=>$('msg').textContent='',3500)}
+function setMe(m){ME=m;$('who').textContent=m?`👤 ${m.name} · ชนะ ${m.wins} · ทอง ${m.gold}`:'โหมดผู้เล่นทั่วไป (ยังไม่ล็อกอิน)';
+ ['bSave','bLoad','bGuild','bOut'].forEach(i=>$(i).classList.toggle('hide',!m));$('bLogin').classList.toggle('hide',!!m);$('bLoad').disabled=!(m&&m.char)}
+if(TOKEN)api('/api/me').then(setMe).catch(()=>setMe(null));else setMe(null);
+$('bLogin').onclick=()=>$('authOv').classList.remove('hide');$('aX').onclick=()=>$('authOv').classList.add('hide');
+async function doAuth(k){$('aErr').textContent='';try{const r=await api('/api/'+k,{u:$('aU').value.trim(),p:$('aP').value});TOKEN=r.token;try{localStorage.setItem('tk',TOKEN)}catch(e){}setMe(r.me);$('authOv').classList.add('hide');$('aP').value=''}catch(x){$('aErr').textContent=x.message}}
+$('aIn').onclick=()=>doAuth('login');$('aReg').onclick=()=>doAuth('register');
+$('bOut').onclick=()=>{TOKEN='';try{localStorage.removeItem('tk')}catch(e){}setMe(null)};
+function shrink(src){return new Promise(ok=>{if(!src||!src.startsWith('data:'))return ok(src);const i=new Image();i.onload=()=>{const c=document.createElement('canvas'),s=Math.min(1,160/Math.max(i.width,i.height));c.width=i.width*s;c.height=i.height*s;c.getContext('2d').drawImage(i,0,0,c.width,c.height);ok(c.toDataURL('image/jpeg',.8))};i.onerror=()=>ok('');i.src=src})}
+$('bSave').onclick=async()=>{const c=build(),form={name:$('name').value,race:$('race').value,bg:$('bg').value,cls:sel.cls,alloc:sel.alloc,cname:$('cname').value,ctype:$('ctype').value};
+ try{const av=await shrink(sel.avatar),ch={form,name:c.name,label:c.race+' · '+c.cls,emoji:c.emoji};await api('/api/save',{char:ch,avatar:av});ME.char=ch;ME.avatar=av;setMe(ME);flash('บันทึกตัวละครแล้ว')}catch(x){flash(x.message)}};
+$('bLoad').onclick=()=>{if(!ME||!ME.char)return;const f=ME.char.form;$('name').value=f.name;$('race').value=f.race;$('bg').value=f.bg;sel.cls=f.cls;sel.alloc=f.alloc;$('cname').value=f.cname;$('ctype').value=f.ctype;sel.avatar=ME.avatar||'';preview();flash('โหลดแล้ว กด "ลงสู่ดันเจี้ยน" ได้เลย')};
+
+/* ---- แมพ ---- */
+function rng(s){return()=>(s=(s*1664525+1013904223)>>>0)/4294967296}
+function mkPath(g){let st=null;for(let y=0;y<N&&!st;y++)for(let x=0;x<N;x++)if(g[y][x]=='.'){st=[x,y];break}
+ if(!st)return null;const k=p=>p[0]+','+p[1],prev={[k(st)]:null},q=[st];let last=st;
+ while(q.length){const p=q.shift();last=p;[[1,0],[-1,0],[0,1],[0,-1]].forEach(d=>{const x=p[0]+d[0],y=p[1]+d[1];if(x>=0&&y>=0&&x<N&&y<N&&g[y][x]=='.'&&!((x+','+y) in prev)){prev[x+','+y]=p;q.push([x,y])}})}
+ const path=[];for(let p=last;p;p=prev[k(p)])path.push(p);return path.reverse()}
+function genMap(seed){seed=seed||Math.floor(Math.random()*1e9);const r=rng(seed),g=Array.from({length:N},()=>Array(N).fill('#')),pts=[];
+ for(let i=0;i<6;i++)pts.push([1+Math.floor(r()*(N-3)),1+Math.floor(r()*(N-3))]);
+ const dig=(x,y)=>{if(x>0&&y>0&&x<N-1&&y<N-1)g[y][x]='.'};
+ pts.forEach((p,i)=>{for(let a=-1;a<=1;a++)for(let b=-1;b<=1;b++)dig(p[0]+a,p[1]+b);if(i){let x=pts[i-1][0],y=pts[i-1][1];while(x!=p[0]){dig(x,y);x+=Math.sign(p[0]-x)}while(y!=p[1]){dig(x,y);y+=Math.sign(p[1]-y)}dig(x,y)}});
+ const grid=g.map(r=>r.join('')),path=mkPath(grid);if(!path||path.length<10)return genMap(seed+7);
+ const nm=['ซากปรักหักพัง','เขาวงกตกระดูก','ห้องใต้ดินเถ้าถ่าน','สุสานลืมนาม','ถ้ำเงามืด'];
+ return{name:nm[Math.floor(r()*nm.length)],grid,path,ai:false}}
+function drawMap(){const s=$('side');if(!s||!G)return;if(!G.mapSet){MAP=genMap();G.mapSet=1}
+ const w=document.createElement('div');
+ w.innerHTML=`<h3 style="margin-top:14px">แผนที่: ${esc(MAP.name)}${MAP.ai?' (AI)':''}</h3><canvas id="mm" width="150" height="150" style="width:100%;max-width:210px;image-rendering:pixelated;border:1px solid var(--leather);display:block;margin:6px auto"></canvas><div class="grid2"><button class="sm" id="mmN">สุ่มแมพใหม่</button><button class="sm" id="mmA">แมพ AI</button></div><p class="hint" id="mmM" style="margin:6px 0 0"></p>`;
+ s.appendChild(w);const c2=$('mm').getContext('2d'),p=MAP.path,i=Math.round((p.length-1)*(Math.min(G.room,TOTAL+1)-1)/TOTAL);
+ MAP.grid.forEach((row,y)=>[...row].forEach((c,x)=>{c2.fillStyle=c=='#'?'#120e0a':'#6b5638';c2.fillRect(x*10,y*10,10,10)}));
+ p.forEach((q,j)=>{if(j<i){c2.fillStyle='#d4a84b';c2.fillRect(q[0]*10+3,q[1]*10+3,4,4)}});
+ const e=p[p.length-1];c2.fillStyle='#c4393d';c2.fillRect(e[0]*10+1,e[1]*10+1,8,8);
+ c2.fillStyle='#f0d38a';c2.beginPath();c2.arc(p[i][0]*10+5,p[i][1]*10+5,4,0,7);c2.fill();
+ $('mmN').onclick=()=>{MAP=genMap();side()};
+ $('mmA').onclick=async()=>{if(!ME){$('mmM').textContent='ต้องล็อกอินก่อนใช้แมพ AI';return}
+  const t=prompt('ธีมแมพ เช่น ถ้ำน้ำแข็ง, วิหารใต้น้ำ');if(!t)return;$('mmM').textContent='AI กำลังออกแบบ…';
+  try{const m=await api('/api/map',{theme:t});
+   if(!Array.isArray(m.grid)||m.grid.length!=N||m.grid.some(r=>typeof r!='string'||!/^[#.]{15}$/.test(r)))throw new Error('AI ส่งแมพผิดรูปแบบ ลองใหม่');
+   const path=mkPath(m.grid);if(!path||path.length<8)throw new Error('แมพ AI เล็กเกินไป ลองใหม่');
+   MAP={name:m.name,grid:m.grid,path,ai:true};side()}catch(x){$('mmM').textContent=x.message}}}
+const _side=side;side=function(){_side();drawMap()};
+const _end=end;end=function(w,o){_end(w,o);if(w&&ME)api('/api/win',{gold:G.gold}).then(r=>setMe(r.me)).catch(()=>{})};
+
+/* ---- กิลด์ ---- */
+$('bGuild').onclick=()=>{$('guildOv').classList.remove('hide');$('guildBox').innerHTML='กำลังโหลด…';guildRender();clearInterval(gTimer);gTimer=setInterval(()=>{if($('guildOv').classList.contains('hide'))clearInterval(gTimer);else guildRender(true)},5000)};
+async function guildRender(quiet){const b=$('guildBox');let r;try{r=await api('/api/guild')}catch(e){b.textContent=e.message;return}
+ if(!r.guild){if(quiet&&$('gn'))return;const l=await api('/api/guilds');
+  b.innerHTML=`<h2>กิลด์</h2><p class="hint">คุณยังไม่มีกิลด์ สร้างใหม่หรือเข้าร่วมของคนอื่น</p><label for="gn">ชื่อกิลด์ใหม่</label><input type="text" id="gn" maxlength="24"><button class="btn" id="gc" style="margin-top:8px">สร้างกิลด์</button><h3 style="margin-top:16px">กิลด์ที่เปิดอยู่</h3>${l.guilds.map(g=>`<div class="mem"><span>${esc(g.name)} (${g.n}/20)</span><button class="sm" data-j="${g.id}">เข้าร่วม</button></div>`).join('')||'<p class="hint">ยังไม่มีกิลด์</p>'}<button class="sm" id="gx" style="margin-top:14px">ปิด</button>`;return}
+ if(!$('gChat'))b.innerHTML=`<h2 id="gT"></h2><div id="gMem"></div><div class="chat" id="gChat"></div><div class="grid2" style="grid-template-columns:1fr auto"><input type="text" id="gm" maxlength="200" placeholder="พิมพ์ข้อความถึงสมาชิก"><button class="sm" id="gs">ส่ง</button></div><div class="grid2" style="margin-top:12px"><button class="sm" id="gl">ออกจากกิลด์</button><button class="sm" id="gx">ปิด</button></div>`;
+ const g=r.guild;$('gT').textContent='🏰 '+g.name;
+ $('gMem').innerHTML=g.members.map(m=>`<div class="mem"><span>${m.owner?'👑 ':''}${esc(m.emoji||'👤')} ${esc(m.name)} <small class="hint">${esc(m.label||'ยังไม่มีตัวละคร')}</small></span><span class="hint">ชนะ ${m.wins} · ${m.gold}g</span></div>`).join('');
+ const c=$('gChat'),bot=c.scrollTop+c.clientHeight>=c.scrollHeight-20;c.innerHTML=g.chat.map(m=>`<div><b>${esc(m.u)}:</b> ${esc(m.t)}</div>`).join('');if(bot)c.scrollTop=1e9}
+$('guildBox').onclick=async e=>{const t=e.target.closest('button');if(!t)return;
+ try{if(t.id==='gx'){$('guildOv').classList.add('hide');return}
+  if(t.id==='gc')await api('/api/guilds',{name:$('gn').value});
+  else if(t.dataset.j)await api('/api/guilds/join',{id:t.dataset.j});
+  else if(t.id==='gl')await api('/api/guilds/leave',{});
+  else if(t.id==='gs'){const v=$('gm').value.trim();if(!v)return;$('gm').value='';await api('/api/guild/chat',{text:v})}
+  else return;guildRender()}catch(x){alert(x.message)}};
+$('guildBox').onkeydown=e=>{if(e.key==='Enter'&&e.target.id==='gm')$('gs').click()};
+</script>
+</body>
+</html>
