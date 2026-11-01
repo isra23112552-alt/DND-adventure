@@ -1,0 +1,12 @@
+{
+  "name": "dnd-adventure",
+  "version": "1.0.0",
+  "description": "Dark fantasy D&D solo adventure",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
